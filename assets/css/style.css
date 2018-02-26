@@ -1,0 +1,28 @@
+@font-face {
+    font-family: superNintendoFont;
+    src: url(../fonts/snes.ttf);
+}
+
+header {
+    font-family: superNintendoFont;
+}
+
+.jumbotron {
+    height:200px;
+    margin-bottom: 1rem;
+}
+
+.display-1 {
+    line-height: 0.5;
+    color:  #fc0c18;
+}
+
+.border-danger {
+    border-color: #fc0c18!important;
+}
+
+@media (max-width: 576px) {
+    .jumbotron {
+        padding: 4rem 2rem;
+    }
+}

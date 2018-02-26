@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- My CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<title>Hangman: Super Nintendo Edition</title>
+</head>
+<body>
+
+<header>
+	<div class="jumbotron jumbotron-fluid align-middle">
+		<div class="container">
+			<div class="display-1 text-center">HANGMAN</div>
+			<h1 class="text-center">SUPER NINTENDO EDITION</h1>
+		</div>
+	</div>
+</header>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 text-center">
+			<p>Guess a letter to get started! <span id="demo"></span></p>
+		</div>
+		<div class="col-6 text-right">
+			<img class="img-thumbnail border-danger" src="assets/images/superNintendo.png">
+		</div>
+		<div class="col-6 text-left">
+			<p>Wins: <span id="displayWins">0</span></p>
+			<p>Losses: <span id="displayLosses">0</span></p>
+			<p>Current Word: <span id="displayCorrectGuesses"></span></p><br><br>
+			<p>Number of Guesses Remaining:</p>
+			<span id="displayGuessesLeft"></span>
+			<p>Letters Guessed So Far:</p><br><br>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- My JavaScript File -->
+<script src="assets/javascript/game.js"></script>
+</body>
+</html>
