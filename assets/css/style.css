@@ -10,6 +10,7 @@ header {
 .jumbotron {
     height:200px;
     margin-bottom: 1rem;
+    border-bottom: 3px #fc0c18 solid;
 }
 
 .display-1 {
