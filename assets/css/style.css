@@ -11,15 +11,20 @@ header {
     height:200px;
     margin-bottom: 1rem;
     border-bottom: 3px #fc0c18 solid;
+    background-color: #c3c6c9;
 }
 
 .display-1 {
     line-height: 0.5;
-    color:  #fc0c18;
+    color:  #6550b6;
 }
 
 .border-danger {
     border-color: #fc0c18!important;
+}
+
+body {
+    background-color: #eff2f5;
 }
 
 @media (max-width: 576px) {

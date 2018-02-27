@@ -6,7 +6,7 @@ var correctGuesses = [];
 var goodGuess;
 var wins = 0;
 var losses = 0;
-var guessesLeft = 10;
+var guessesLeft = 3;
 var displayGuessesLeft = document.getElementById("displayGuessesLeft");
 
 /* FUNCTIONS */
@@ -46,10 +46,16 @@ function splitWord(currentWord) {
 	return split;
 }
 
+function newWord(){
+	var rand = words[Math.floor(Math.random() * words.length)]
+	return rand;
+}
+
 /* BODY */
 
 updateGuessesLeft();
-var wordSplitUp = splitWord(words[0]);
+var currentWord = newWord();
+var wordSplitUp = splitWord(currentWord);
 document.getElementById("demo").innerHTML = wordSplitUp;
 
 document.onkeyup = function(pressed) {
@@ -58,20 +64,48 @@ document.onkeyup = function(pressed) {
 		var idx = wordSplitUp.indexOf(letter);
 		if (idx > -1)
 		{
-			alert(letter + " found inside " + words[0]);
+			alert(letter + " found inside " + currentWord);
 			while (idx != -1) {
 				goodGuess = wordSplitUp.splice(idx, 1);
 				correctGuesses.push(goodGuess);
 				idx = wordSplitUp.indexOf(letter);
 			}
+			array.sort(function(a, b) {
+				return 
+			})
 			document.getElementById("displayCorrectGuesses").innerHTML = correctGuesses.toString();
 			updateGuessesLeft();
 			document.getElementById("demo").innerHTML = wordSplitUp;
+			if (wordSplitUp.length === 0) {
+				alert("YOU GOT IT! " + currentWord);
+				currentWord = newWord();
+				wordSplitUp = splitWord(currentWord)
+				document.getElementById("demo").innerHTML = wordSplitUp;
+				wins++;
+				updateWins();
+				guessesLeft = 3;
+				updateGuessesLeft();
+				correctGuesses.length = 0;
+				document.getElementById("displayCorrectGuesses").innerHTML = correctGuesses.toString();
+			}
 
 		} else {
-			alert("Nope");
-			guessesLeft--;
-			updateGuessesLeft();
+			if (guessesLeft > 0) {
+				alert("Nope");
+				guessesLeft--;
+				updateGuessesLeft();
+			} else {
+				alert("GAME OVER");
+				currentWord = newWord();
+				wordSplitUp = splitWord(currentWord)
+				document.getElementById("demo").innerHTML = wordSplitUp;
+				losses++;
+				updateLosses();
+				guessesLeft = 3;
+				updateGuessesLeft();
+			}
+
+
 		}
 	};
 
