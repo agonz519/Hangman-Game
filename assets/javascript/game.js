@@ -8,6 +8,8 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 3;
 var displayGuessesLeft = document.getElementById("displayGuessesLeft");
+var song = new Audio("assets/music/Super Mario World (SNES) Music - Overworld Theme.mp3");
+var gameOver = new Audio("assets/sound effects/Super Mario World OST - Lose Life-[AudioTrimmer.com].mp3");
 
 /* FUNCTIONS */
 
@@ -56,6 +58,7 @@ function checkForWin(everyItem){
 }
 
 /* BODY */
+song.play();
 
 updateGuessesLeft();
 var currentWord = newWord();
@@ -94,7 +97,7 @@ document.onkeyup = function(pressed) {
 			if (wordSplitUp.every(checkForWin)) {
 				alert("YOU GOT IT! " + currentWord);
 				currentWord = newWord();
-				wordSplitUp = splitWord(currentWord)
+				wordSplitUp = splitWord(currentWord);
 				wordSplitUpCopy = wordSplitUp.slice();
 				for (var i = 0; i < wordSplitUpCopy.length; i++) {
 					wordSplitUpCopy[i] = "_";
@@ -114,7 +117,12 @@ document.onkeyup = function(pressed) {
 				guessesLeft--;
 				updateGuessesLeft();
 			} else {
+				song.pause();
+				song.currentTime = 0;
+				gameOver.play();
 				alert("GAME OVER");
+				gameOver.pause();
+				gameOver.currentTime = 0;
 				currentWord = newWord();
 				wordSplitUp = splitWord(currentWord)
 				wordSplitUpCopy = wordSplitUp.slice();
