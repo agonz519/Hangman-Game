@@ -10,6 +10,7 @@ var guessesLeft = 3;
 var displayGuessesLeft = document.getElementById("displayGuessesLeft");
 var song = new Audio("assets/music/Super Mario World (SNES) Music - Overworld Theme.mp3");
 var gameOver = new Audio("assets/sound effects/Super Mario World OST - Lose Life-[AudioTrimmer.com].mp3");
+var victory = new Audio("assets/sound effects/Final Fantasy III (SNES) Music - Unused Fanfare-[AudioTrimmer.com].mp3")
 
 /* FUNCTIONS */
 
@@ -68,7 +69,7 @@ for (var i = 0; i < wordSplitUpCopy.length; i++) {
 	wordSplitUpCopy[i] = "_";
 }
 document.getElementById("demo").innerHTML = wordSplitUp;
-document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy;
+document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
 
 document.onkeyup = function(pressed) {
 	var letter = pressed.key;
@@ -91,11 +92,16 @@ document.onkeyup = function(pressed) {
 
 			}
 
-			document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy;
+			document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
 			updateGuessesLeft();
 			document.getElementById("demo").innerHTML = wordSplitUp;
 			if (wordSplitUp.every(checkForWin)) {
+				song.pause();
+				song.currentTime = 0;
+				victory.play();
 				alert("YOU GOT IT! " + currentWord);
+				victory.pause();
+				victory.currentTime = 0;
 				currentWord = newWord();
 				wordSplitUp = splitWord(currentWord);
 				wordSplitUpCopy = wordSplitUp.slice();
@@ -108,7 +114,7 @@ document.onkeyup = function(pressed) {
 				guessesLeft = 3;
 				updateGuessesLeft();
 				correctGuesses.length = 0;
-				document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy;
+				document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
 			}
 
 		} else {
@@ -135,7 +141,7 @@ document.onkeyup = function(pressed) {
 				guessesLeft = 3;
 				updateGuessesLeft();
 				correctGuesses.length = 0;
-				document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy;
+				document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
 			}
 
 
