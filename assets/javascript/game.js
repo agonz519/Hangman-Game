@@ -97,7 +97,7 @@ var correctGuesses = [];
 var goodGuess;
 var wins = 0;
 var losses = 0;
-var guessesLeft = 3;
+var guessesLeft = 7;
 var displayGuessesLeft = document.getElementById("displayGuessesLeft");
 var song = new Audio("assets/music/Super Mario World (SNES) Music - Overworld Theme.mp3");
 var gameOver = new Audio("assets/sound effects/Super Mario World OST - Lose Life-[AudioTrimmer.com].mp3");
