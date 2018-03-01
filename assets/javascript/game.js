@@ -103,6 +103,12 @@ var song = new Audio("assets/music/Super Mario World (SNES) Music - Overworld Th
 var gameOver = new Audio("assets/sound effects/Super Mario World OST - Lose Life-[AudioTrimmer.com].mp3");
 var victory = new Audio("assets/sound effects/Final Fantasy III (SNES) Music - Unused Fanfare-[AudioTrimmer.com].mp3")
 
+var wordArray;
+var currentWord;
+var rewardSong;
+var rewardPic;
+var wordSplitUp;
+var wordSplitUpCopy;
 
 
 /* FUNCTIONS */
@@ -155,27 +161,41 @@ function checkForWin(everyItem){
 	return everyItem === "_";
 }
 
-/* BODY */
-song.play();
-
-updateGuessesLeft();
-var wordArray = newWord();
-var currentWord = wordArray[0];
-var rewardSong = wordArray[2];
-var rewardPic = wordArray[1];
-var wordSplitUp = splitWord(currentWord);
-var wordSplitUpCopy = wordSplitUp.slice();
-for (var i = 0; i < wordSplitUpCopy.length; i++) {
-	wordSplitUpCopy[i] = "_";
+function newGame(){
+	wordArray = newWord();
+	currentWord = wordArray[0];
+	rewardSong = wordArray[2];
+	rewardPic = wordArray[1];
+	wordSplitUp = splitWord(currentWord);
+	wordSplitUpCopy = wordSplitUp.slice();
+	guessesLeft = 7;
+	correctGuesses.length = 0;
+	incorrectGuesses.length = 0;
+	for (var i = 0; i < wordSplitUpCopy.length; i++) {
+		wordSplitUpCopy[i] = "_";
+	}
 }
 
-document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
+function updateGuesses() {
+	document.getElementById("incorrectGuesses").innerHTML = incorrectGuesses.toString();
+	document.getElementById("correctGuesses").innerHTML = correctGuesses.toString();
+	document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
+}
+
+function splitUpWithSpaces() {
+	document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
+}
+
+/* BODY */
+song.play();
+newGame();
+updateGuessesLeft();
+splitUpWithSpaces();
 
 document.onkeyup = function(pressed) {
 	var letter = pressed.key;
 	if (checkInput(letter)) {
 		var idx = wordSplitUp.indexOf(letter);
-
 		if (idx > -1)
 		{
 			console.log(letter + " found in word");
@@ -192,11 +212,10 @@ document.onkeyup = function(pressed) {
 				idx = wordSplitUp.indexOf(letter);
 			}
 			document.getElementById("correctGuesses").innerHTML = correctGuesses.toString();
-			document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
+			splitUpWithSpaces();
 			updateGuessesLeft();
 
 			if (wordSplitUp.every(checkForWin)) {
-
 				song.pause();
 				song.currentTime = 0;
 				victory.play();
@@ -208,27 +227,12 @@ document.onkeyup = function(pressed) {
 				song.currentTime = 0;
 				song = new Audio(rewardSong);
 				song.play();
-				wordArray = newWord();
-				currentWord = wordArray[0];
-				rewardSong = wordArray[2];
-				rewardPic = wordArray[1];
-				wordSplitUp = splitWord(currentWord);
-				wordSplitUpCopy = wordSplitUp.slice();
-				for (var i = 0; i < wordSplitUpCopy.length; i++) {
-					wordSplitUpCopy[i] = "_";
-				}
-
+				newGame();
 				wins++;
 				updateWins();
-				guessesLeft = 7;
 				updateGuessesLeft();
-				correctGuesses.length = 0;
-				incorrectGuesses.length = 0;
-				document.getElementById("incorrectGuesses").innerHTML = incorrectGuesses.toString();
-				document.getElementById("correctGuesses").innerHTML = correctGuesses.toString();
-				document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
+				updateGuesses();
 			}
-
 		} else {
 			if (guessesLeft > 0) {
 				console.log("incorrect guess");
@@ -243,31 +247,12 @@ document.onkeyup = function(pressed) {
 				alert("GAME OVER! No music for you! :)");
 				gameOver.pause();
 				gameOver.currentTime = 0;
-				incorrectGuesses.length = 0;
-				correctGuesses.length = 0;
-				document.getElementById("incorrectGuesses").innerHTML = incorrectGuesses.toString();
-				document.getElementById("correctGuesses").innerHTML = correctGuesses.toString();
-				wordArray = newWord();
-				currentWord = wordArray[0];
-				rewardSong = wordArray[2];
-				rewardPic = wordArray[1];
-				wordSplitUp = splitWord(currentWord);
-				wordSplitUpCopy = wordSplitUp.slice();
-				for (var i = 0; i < wordSplitUpCopy.length; i++) {
-					wordSplitUpCopy[i] = "_";
-				}
-
+				newGame();
 				losses++;
 				updateLosses();
-				guessesLeft = 7;
 				updateGuessesLeft();
-				document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
+				updateGuesses();
 			}
-
-
 		}
 	};
-
-
-
 }
