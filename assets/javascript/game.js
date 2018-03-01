@@ -220,7 +220,7 @@ document.onkeyup = function(pressed) {
 
 				wins++;
 				updateWins();
-				guessesLeft = 3;
+				guessesLeft = 7;
 				updateGuessesLeft();
 				correctGuesses.length = 0;
 				incorrectGuesses.length = 0;
@@ -259,7 +259,7 @@ document.onkeyup = function(pressed) {
 
 				losses++;
 				updateLosses();
-				guessesLeft = 3;
+				guessesLeft = 7;
 				updateGuessesLeft();
 				document.getElementById("displayCorrectGuesses").innerHTML = wordSplitUpCopy.join(" ");
 			}
