@@ -26,20 +26,24 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-12 text-center">
-			<p>Guess a letter to get started! <span id="demo"></span></p>
+		<div id="emulogic" class="col-12 text-center">
+			<p><span id="intro">Guess a letter to get started!</span></p>
 		</div>
-		<div class="col-6 text-right">
-			<img class="img-thumbnail border-danger" src="assets/images/superNintendo.png">
+		<div class="col-2"></div>
+		<div class="col-4 text-right">
+			<img id= "gameImage" class="img-thumbnail border-danger" src="assets/images/superNintendo.png">
 		</div>
-		<div class="col-6 text-left">
-			<p>Wins: <span id="displayWins">0</span></p>
-			<p>Losses: <span id="displayLosses">0</span></p>
+		<div class="col-2 text-center">
+			<p>Wins:<br><span id="displayWins">0</span></p>
+			<p>Losses:<br><span id="displayLosses">0</span></p>
 			<p>Current Word:<br><br><span id="displayCorrectGuesses"></span></p><br>
 			<p>Number of Guesses Remaining:</p>
 			<span id="displayGuessesLeft"></span>
-			<p>Letters Guessed So Far:</p><br><br>
+			<p>Letters Guessed So Far:</p>
+			<span id="correctGuesses"></span><br>
+			<span id="incorrectGuesses"></span>
 		</div>
+		<div class="col-4"></div>
 	</div>
 </div>
 

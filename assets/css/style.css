@@ -3,8 +3,17 @@
     src: url(../fonts/snes.ttf);
 }
 
+@font-face {
+    font-family: pixelFont;
+    src: url(../fonts/emulogic.ttf);
+}
+
 header {
     font-family: superNintendoFont;
+}
+
+#emulogic {
+    font-family: pixelFont;
 }
 
 .jumbotron {
